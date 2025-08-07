@@ -63,7 +63,7 @@ jobs:
 
       - name: Upload artifacts (optional)
         # Upload trained model files as GitHub artifacts for manual access
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: success()
         with:
           name: trained-model
