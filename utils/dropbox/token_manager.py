@@ -9,7 +9,7 @@ from config import settings
 logger = logging.getLogger(__name__)
 
 # Path to .env
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 ENV_PATH = BASE_DIR / ".env"
 DROPBOX_TOKEN_URL = settings.dropbox_token_url
 
@@ -18,15 +18,10 @@ def refresh_access_token():
     """
     Refresh Dropbox access_token using refresh_token and save it in .env
     """
-    if not ENV_PATH.exists():
-        logger.warning(f".env file not found at {ENV_PATH}")
-        raise FileNotFoundError(f".env file not found at {ENV_PATH}")
 
-    env_vars = dotenv_values(ENV_PATH)
-
-    refresh_token = env_vars.get("DROPBOX_REFRESH_TOKEN")
-    app_key = env_vars.get("DROPBOX_APP_KEY")
-    app_secret = env_vars.get("DROPBOX_APP_SECRET")
+    refresh_token = settings.dropbox_refresh_token
+    app_key = settings.dropbox_app_key
+    app_secret = settings.dropbox_app_secret
 
     if not all([refresh_token, app_key, app_secret]):
         logger.error(f"Dropbox required keys is missing: DROPBOX_REFRESH_TOKEN, APP_KEY or APP_SECRET")
