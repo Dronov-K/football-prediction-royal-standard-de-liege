@@ -41,13 +41,17 @@ class Settings(BaseSettings):
 
     belgium_data_base_url: Annotated[str, Field(json_schema_extra={"env": "BELGIUM_DATA_BASE_URL"})]
 
-    # dropbox_access_token: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_ACCESS_TOKEN"})]
-    # dropbox_model_path: Annotated[
-    #     str, Field(
-    #         default="/models/latest_model.joblib",
-    #         json_schema_extra={"env": "DROPBOX_MODEL_PATH"}
-    #     )
-    # ]
+    dropbox_access_token: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_ACCESS_TOKEN"})]
+    dropbox_model_path: Annotated[
+        str, Field(
+            default="/models/latest_model.joblib",
+            json_schema_extra={"env": "DROPBOX_MODEL_PATH"}
+        )
+    ]
+    dropbox_token_url: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_TOKEN_URL"})]
+    dropbox_refresh_token: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_REFRESH_TOKEN"})]
+    dropbox_app_key: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_APP_KEY"})]
+    dropbox_app_secret: Annotated[str, Field(json_schema_extra={"env": "DROPBOX_APP_SECRET"})]
 
     def model_post_init(self, __context) -> None:
         """
