@@ -4,7 +4,7 @@ on:
   # Trigger: either manually or on schedule
   workflow_dispatch:  # Manual start via GitHub UI
   schedule:
-    - cron: '*/5 * * * *'  # Every Tuesday at 02:00 UTC
+    - cron: '0 2 * * 2'  # Every Tuesday at 02:00 UTC
 
 jobs:
   train-and-upload:
